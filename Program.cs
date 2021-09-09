@@ -71,7 +71,7 @@ namespace NinetiesTV
         // 5. Return the most recent year that any of the shows aired.
         static int MostRecentYear(List<Show> shows)
         {
-            throw new NotImplementedException();
+            return shows.Select(s => s.EndYear).Max();
         }
 
         // 6. Return the average IMDB rating for all the shows.
