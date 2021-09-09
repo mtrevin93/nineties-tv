@@ -165,7 +165,7 @@ namespace NinetiesTV
         //     with an IMDB rating of less than 8.0 ordered alphabetically.
         static Show FirstLongRunningTopRated(List<Show> shows)
         {
-            throw new NotImplementedException();
+            return shows.Where(s => s.ImdbRating < 8.0).OrderBy(s => s.Name).FirstOrDefault(s => s.EndYear - s.StartYear > 10);
         }
 
         // 21. Return the show with the most words in the name.
