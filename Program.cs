@@ -34,6 +34,8 @@ namespace NinetiesTV
             Print("All Names", AllNamesWithCommas(shows));
             Print("All Names with And", AllNamesWithCommasPlsAnd(shows));
             Print("All 80s Genres", AllEightiesGenres(shows));
+            Print("Unique Genres", UniqueGenres(shows));
+            Print("Shows per year", ShowsPerYear(shows));
         }
 
         /**************************************************************************************************
@@ -204,16 +206,26 @@ namespace NinetiesTV
         **************************************************************************************************/
 
         // 1. Return the genres of the shows that started in the 80s.
-        public static List<string> AllEightiesGenres(List<Show> shows)
+        static List<string> AllEightiesGenres(List<Show> shows)
         {
             return shows.Where(s => s.StartYear >= 1980 && s.StartYear < 1990).SelectMany(s => s.Genres).ToList();
         }
         // 2. Print a unique list of geners.
-        public static List<string> AllEightiesGenres(List<Show> shows)
+        static List<string> UniqueGenres(List<Show> shows)
         {
-            return shows.Where(s => s.StartYear >= 1980 && s.StartYear < 1990).SelectMany(s => s.Genres).ToList();
+            return shows.SelectMany(s => s.Genres).Distinct().ToList();
         }
         // 3. Print the years 1987 - 2018 along with the number of shows that started in each year (note many years will have zero shows)
+        static List<string> ShowsPerYear(List<Show> shows)
+        {
+            List<string> showsPerYear = new List<string>();
+            for (int i = 1987; i < 2019; i++)
+            {
+                int count = shows.Where(s => s.StartYear == i).Count();
+                showsPerYear.Add($"In year {i}, {count} shows started.");
+            }
+            return showsPerYear;
+        }
         // 4. Assume each episode of a comedy is 22 minutes long and each episode of a show that isn't a comedy is 42 minutes. How long would it take to watch every episode of each show?
         // 5. Assume each show ran each year between its start and end years (which isn't true), which year had the highest average IMDB rating.
 
