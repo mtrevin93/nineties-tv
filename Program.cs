@@ -36,6 +36,7 @@ namespace NinetiesTV
             Print("All 80s Genres", AllEightiesGenres(shows));
             Print("Unique Genres", UniqueGenres(shows));
             Print("Shows per year", ShowsPerYear(shows));
+            Print("Total Binge Time", BingeTime(shows));
         }
 
         /**************************************************************************************************
@@ -227,6 +228,12 @@ namespace NinetiesTV
             return showsPerYear;
         }
         // 4. Assume each episode of a comedy is 22 minutes long and each episode of a show that isn't a comedy is 42 minutes. How long would it take to watch every episode of each show?
+        static int BingeTime(List<Show> shows)
+        {
+            List<Show> comedies = shows.Where(s => s.Genres.Contains("Comedy")).ToList();
+            List<Show> notFunny = shows.Where(s => s.Genres!.Contains("Comedy")).ToList();
+            return comedies.Count * 22 + notFunny.Count * 42;
+        }
         // 5. Assume each show ran each year between its start and end years (which isn't true), which year had the highest average IMDB rating.
 
 
