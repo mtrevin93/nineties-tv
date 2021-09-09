@@ -89,7 +89,7 @@ namespace NinetiesTV
         // 8. Return the top three highest rated shows.
         static List<Show> TopThreeByRating(List<Show> shows)
         {
-            throw new NotImplementedException();
+            return shows.OrderByDescending(s => s.ImdbRating).Take(3).ToList();
         }
 
         // 9. Return the shows whose name starts with the word "The".
