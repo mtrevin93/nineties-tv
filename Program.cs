@@ -158,7 +158,7 @@ namespace NinetiesTV
         // 19. Return the number of crime shows with an IMDB rating greater than 7.0.
         static int GoodCrimeShows(List<Show> shows)
         {
-            throw new NotImplementedException();
+            return shows.Where(s => s.ImdbRating >= 7.0).Count();
         }
 
         // 20. Return the first show that ran for more than 10 years 
