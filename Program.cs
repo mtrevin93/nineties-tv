@@ -52,7 +52,8 @@ namespace NinetiesTV
         // 2. Return a list of show names ordered alphabetically.
         static List<string> NamesAlphabetically(List<Show> shows)
         {
-            throw new NotImplementedException();
+            List<Show> orderedShows = shows.OrderBy(s => s.Name).ToList();
+            return orderedShows.Select(s => s.Name).ToList();
         }
 
         // 3. Return a list of shows ordered by their IMDB Rating with the highest rated show first.
