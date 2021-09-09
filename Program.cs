@@ -114,7 +114,7 @@ namespace NinetiesTV
         //     Assume the number of years between the start and end years is the number of years the show was on.
         static List<Show> ShowsByDuration(List<Show> shows)
         {
-            throw new NotImplementedException();
+            return shows.OrderByDescending(s => s.EndYear-s.StartYear).ToList();
         }
 
         // 13. Return the names of the comedy shows sorted by IMDB rating.
