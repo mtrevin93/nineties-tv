@@ -132,27 +132,27 @@ namespace NinetiesTV
         // 15. Return the show with the most episodes.
         static Show MostEpisodes(List<Show> shows)
         {
-            return (Show)shows.OrderByDescending(s => s.EpisodeCount).Take(1);
+            return shows.OrderByDescending(s => s.EpisodeCount).FirstOrDefault();
         }
 
         // 16. Order the shows by their ending year then return the first 
         //     show that ended on or after the year 2000.
         static Show EndedFirstAfterTheMillennium(List<Show> shows)
         {
-            throw new NotImplementedException();
+            return shows.OrderBy(s => s.EndYear).FirstOrDefault(s => s.EndYear >= 2000);
         }
 
         // 17. Order the shows by rating (highest first) 
         //     and return the first show with genre of drama.
         static Show BestDrama(List<Show> shows)
         {
-            throw new NotImplementedException();
+            return shows.OrderByDescending(s => s.ImdbRating).FirstOrDefault(s => s.Genres.Contains("Drama"));
         }
 
         // 18. Return all dramas except for the highest rated.
         static List<Show> AllButBestDrama(List<Show> shows)
         {
-            throw new NotImplementedException();
+            return shows.OrderByDescending(s => s.ImdbRating).Where(s => s.Genres.Contains("Drama")).Skip(1).ToList();
         }
 
         // 19. Return the number of crime shows with an IMDB rating greater than 7.0.
