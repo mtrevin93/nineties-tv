@@ -65,7 +65,7 @@ namespace NinetiesTV
         // 4. Return a list of shows whose title contains an & character.
         static List<Show> ShowsWithAmpersand(List<Show> shows)
         {
-            throw new NotImplementedException();
+            return shows.Where(s => s.Name.Contains("&")).ToList();
         }
 
         // 5. Return the most recent year that any of the shows aired.
