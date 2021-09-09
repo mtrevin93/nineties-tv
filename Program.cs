@@ -37,6 +37,7 @@ namespace NinetiesTV
             Print("Unique Genres", UniqueGenres(shows));
             Print("Shows per year", ShowsPerYear(shows));
             Print("Total Binge Time", BingeTime(shows));
+            Print("Best year for TV", BestYearForTv(shows));
         }
 
         /**************************************************************************************************
@@ -235,7 +236,17 @@ namespace NinetiesTV
             return comedies.Count * 22 + notFunny.Count * 42;
         }
         // 5. Assume each show ran each year between its start and end years (which isn't true), which year had the highest average IMDB rating.
-
+        static int BestYearForTv(List<Show> shows)
+        {
+            List<double> averageRatingsByYear = new List<double>(); 
+            for (int i = shows.Min(s => s.StartYear); i <= shows.Max(s => s.EndYear); i++)
+            {
+                double averageRating = shows.Where(s => s.StartYear <= i && s.EndYear >= i).Average(s => s.ImdbRating);
+                averageRatingsByYear.Add(averageRating);
+            }
+            double highestRating = averageRatingsByYear.Max();
+            return averageRatingsByYear.IndexOf(highestRating) + shows.Min(s => s.StartYear);
+        }
 
 
         /**************************************************************************************************
